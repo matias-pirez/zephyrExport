@@ -1,0 +1,170 @@
+{
+	"info": {
+		"_postman_id": "753dd693-5e7d-46a0-91c6-4006f41717c1",
+		"name": "Export Zephyr",
+		"description": "Tutorial de uso en ***",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Export With JQL",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"try {\r",
+							"    var idFile = pm.response.text();\r",
+							"    pm.collectionVariables.set(\"idFile\", idFile);\r",
+							"\r",
+							"    pm.test(\"Datos generados exitosamente\")\r",
+							"} catch (error) {\r",
+							"    throw new Error (\"Ocurrió un error\")\r",
+							"}"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "sec-ch-ua",
+						"value": "\" Not A;Brand\";v=\"99\", \"Chromium\";v=\"98\", \"Google Chrome\";v=\"98\""
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "sec-ch-ua-mobile",
+						"value": "?0"
+					},
+					{
+						"key": "User-Agent",
+						"value": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/98.0.4758.81 Safari/537.36"
+					},
+					{
+						"key": "X-acpt",
+						"value": "{{X-acpt}}"
+					},
+					{
+						"key": "sec-ch-ua-platform",
+						"value": "\"Windows\""
+					},
+					{
+						"key": "Accept",
+						"value": "*/*"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"exportType\": \"excel\",\r\n    \"expand\": [],\r\n    \"projectId\": \"10100\",\r\n    \"issues\": [],\r\n    \"jqlQuery\":\"{{jqlQuery}}\"}"
+				},
+				"url": {
+					"raw": "{{zephyrApi}}/issues/export",
+					"host": [
+						"{{zephyrApi}}"
+					],
+					"path": [
+						"issues",
+						"export"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Download XLSX result",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "sec-ch-ua",
+						"value": "\" Not A;Brand\";v=\"99\", \"Chromium\";v=\"98\", \"Google Chrome\";v=\"98\""
+					},
+					{
+						"key": "sec-ch-ua-mobile",
+						"value": "?0"
+					},
+					{
+						"key": "sec-ch-ua-platform",
+						"value": "\"Windows\""
+					},
+					{
+						"key": "Upgrade-Insecure-Requests",
+						"value": "1"
+					},
+					{
+						"key": "User-Agent",
+						"value": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/98.0.4758.81 Safari/537.36"
+					},
+					{
+						"key": "Accept",
+						"value": "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9"
+					}
+				],
+				"url": {
+					"raw": "{{zephyrApi}}/issues/export/download/ZFJ-issue-export-{{idFile}}.xlsx?acpt={{X-acpt}}",
+					"host": [
+						"{{zephyrApi}}"
+					],
+					"path": [
+						"issues",
+						"export",
+						"download",
+						"ZFJ-issue-export-{{idFile}}.xlsx"
+					],
+					"query": [
+						{
+							"key": "acpt",
+							"value": "{{X-acpt}}"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "zephyrApi",
+			"value": "https://prod-play.zephyr4jiracloud.com/connect/public/rest/api/1.0"
+		},
+		{
+			"key": "jqlQuery",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "X-acpt",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "idFile",
+			"value": ""
+		}
+	]
+}
