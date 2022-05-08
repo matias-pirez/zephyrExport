@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "753dd693-5e7d-46a0-91c6-4006f41717c1",
+		"_postman_id": "5355190e-e2a4-434d-b1af-57713ff5f5b1",
 		"name": "Export Zephyr",
 		"description": "Tutorial de uso en ***",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
@@ -60,7 +60,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"exportType\": \"excel\",\r\n    \"expand\": [],\r\n    \"projectId\": \"10100\",\r\n    \"issues\": [],\r\n    \"jqlQuery\":\"{{jqlQuery}}\"}"
+					"raw": "{\r\n    \"exportType\": \"excel\",\r\n    \"expand\": [],\r\n    \"projectId\": \"{{projectId}}\",\r\n    \"issues\": [],\r\n    \"jqlQuery\":\"{{jqlQuery}}\"}"
 				},
 				"url": {
 					"raw": "{{zephyrApi}}/issues/export",
@@ -165,6 +165,11 @@
 		{
 			"key": "idFile",
 			"value": ""
+		},
+		{
+			"key": "projectId",
+			"value": "",
+			"type": "default"
 		}
 	]
 }
